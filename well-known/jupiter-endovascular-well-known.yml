@@ -1,0 +1,44 @@
+generated: '2026-08-23'
+method: probed
+source: https://jupiterendo.com/.well-known/ (live probes, 2026-08-23)
+hit_count: 0
+note: >-
+  Every /.well-known/ path on jupiterendo.com answers HTTP 202 with a 169-195 byte
+  SiteGround "sg-captcha: challenge" interstitial (an HTML meta-refresh to
+  /.well-known/sgcaptcha/), not a document. A control probe of a deliberately bogus
+  path returned the identical 202 challenge, so the response code carries no
+  information about whether a path exists. NOTHING was fetched and NOTHING was saved,
+  so no WellKnown and no SecurityTxt pointer is emitted — this file records an
+  absence, not a presence. Jupiter Endovascular is a pre-commercial medical device
+  manufacturer with no API surface; no /.well-known/ document is expected here.
+hosts:
+- host: https://jupiterendo.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 202
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 202
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 202
+    file: null
+  - path: /.well-known/api-catalog
+    status: 202
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 202
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 202
+    file: null
+  - path: /.well-known/agent.json
+    status: 202
+    file: null
+soft_404_control:
+  path: /this-path-definitely-does-not-exist-xyz123/
+  status: 202
+  bytes: 169
+  content_type: text/html
+  conclusion: >-
+    Host is a catch-all challenge; a 202 on any path is not evidence the path exists.
